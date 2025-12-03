@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6DED3"
+    tools:context=".CreateTask">
+
+    <TextView
+        android:id="@+id/title_id2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#561527"
+        android:gravity="center_horizontal"
+        android:paddingVertical="10dp"
+        android:text="Add task"
+        android:textColor="#FBFBFB"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/backBttn_id"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="#561527"
+        android:gravity="center"
+        android:paddingHorizontal="15dp"
+        android:text="<-"
+        android:textColor="#DCDCDC"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/title_id2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/taskTitleInput_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:hint="Task Title"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_id2" />
+
+    <EditText
+        android:id="@+id/taskDescriptionInput_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Task description"
+        android:inputType="textMultiLine"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/taskTitleInput_id"
+        app:layout_constraintStart_toStartOf="@+id/taskTitleInput_id"
+        app:layout_constraintTop_toBottomOf="@+id/taskTitleInput_id" />
+
+    <EditText
+        android:id="@+id/dueDateInput_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Due date"
+        android:inputType="date"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/taskDescriptionInput_id"
+        app:layout_constraintStart_toStartOf="@+id/taskDescriptionInput_id"
+        app:layout_constraintTop_toBottomOf="@+id/taskDescriptionInput_id" />
+
+    <Button
+        android:id="@+id/acceptBttn_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:backgroundTint="#8C2F39"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="10dp"
+        android:text="Add task"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dueDateInput_id" />
+</androidx.constraintlayout.widget.ConstraintLayout>

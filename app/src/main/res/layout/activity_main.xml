@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/layout_id"
+        android:id="@+id/recyclerView_id"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -44,7 +44,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="#561527"
+        android:backgroundTint="#8C2F39"
         android:text="Add task"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

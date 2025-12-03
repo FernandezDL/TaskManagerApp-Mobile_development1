@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        var rv = findViewById<RecyclerView>(R.id.layout_id)
+        var rv = findViewById<RecyclerView>(R.id.recyclerView_id)
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = Adapter(arrayOf(
             Task("Task 1", "Description 1", false),
