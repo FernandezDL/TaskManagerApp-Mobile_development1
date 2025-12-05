@@ -1,8 +1,10 @@
 package com.vfs.taskmanager
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -25,6 +27,12 @@ class MainActivity : AppCompatActivity() {
             Task("Task 3", "Description 3", false),
             Task("Task 4", "Description 4", false)
         ))
+        
+        val addTaskBttn = findViewById<Button>(R.id.addTaskBttn_id)
+        addTaskBttn.setOnClickListener {
+            val intent = Intent(this, CreateTask::class.java)
+            startActivity(intent)
+        }
     }
 
     class ViewHolder (val rootView: CardView) : RecyclerView.ViewHolder(rootView)

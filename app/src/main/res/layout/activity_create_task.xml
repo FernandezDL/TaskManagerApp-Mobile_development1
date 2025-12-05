@@ -23,21 +23,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/backBttn_id"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:background="#561527"
-        android:gravity="center"
-        android:paddingHorizontal="15dp"
-        android:text="<-"
-        android:textColor="#DCDCDC"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/title_id2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/taskTitleInput_id"
         android:layout_width="0dp"
@@ -93,4 +78,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dueDateInput_id" />
+
+    <Button
+        android:id="@+id/backBttn_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:backgroundTint="#8C2F39"
+        android:paddingHorizontal="60dp"
+        android:paddingVertical="10dp"
+        android:text="Go back"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/acceptBttn_id" />
 </androidx.constraintlayout.widget.ConstraintLayout>
