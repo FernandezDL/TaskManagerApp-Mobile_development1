@@ -1,4 +1,4 @@
-package com.vfs.taskmanager
+package com.vfs.somecoolname
 
 import org.junit.Test
 

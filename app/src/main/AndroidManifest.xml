@@ -10,12 +10,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TaskManager">
+        android:theme="@style/Theme.Design.Light.NoActionBar">
         <activity
-            android:name=".CreateTask"
+            android:name=".AddTaskActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".TasksActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GroupsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
