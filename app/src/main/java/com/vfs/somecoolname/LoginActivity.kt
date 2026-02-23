@@ -8,6 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
 
 data class UserProfile(
     val name: String = "",
@@ -28,6 +31,24 @@ class LoginActivity : AppCompatActivity() {
         val etName = findViewById<EditText>(R.id.etName)
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
+        val btnLogin = findViewById<Button>(R.id.btnLogin)
+        val btnRegister = findViewById<Button>(R.id.btnRegister)
+
+        val authModeGroup = findViewById<RadioGroup>(R.id.authModeGroup)
+        val rbLogin = findViewById<RadioButton>(R.id.rbLogin)
+        val rbRegister = findViewById<RadioButton>(R.id.rbRegister)
+
+        fun setMode(isRegister: Boolean) {
+            etName.visibility = if (isRegister) View.VISIBLE else View.GONE
+            btnRegister.visibility = if (isRegister) View.VISIBLE else View.GONE
+            btnLogin.visibility = if (isRegister) View.GONE else View.VISIBLE
+        }
+
+        setMode(isRegister = false)
+
+        authModeGroup.setOnCheckedChangeListener { _, checkedId ->
+            setMode(isRegister = checkedId == R.id.rbRegister)
+        }
 
         findViewById<Button>(R.id.btnLogin).setOnClickListener {
             val email = etEmail.text.toString().trim()
