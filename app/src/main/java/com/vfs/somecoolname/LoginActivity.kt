@@ -101,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToGroups() {
-        startActivity(Intent(this, GroupsActivity::class.java))
+        startActivity(Intent(this, GroupsAdapter::class.java))
         finish()
     }
 

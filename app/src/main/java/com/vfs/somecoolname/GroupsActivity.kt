@@ -54,7 +54,7 @@ class GroupsActivity : AppCompatActivity(), GroupListener {
         val groupsRv = findViewById<RecyclerView>(R.id.groupsRecyclerView_id)
         groupsRv.layoutManager = LinearLayoutManager(this)
 
-        groupAdapter = GroupsAdapter(this)
+        groupAdapter = GroupsAdapter(this, groupKeys)
         groupsRv.adapter = groupAdapter
 
         AppData.groups = mutableListOf()
@@ -76,16 +76,8 @@ class GroupsActivity : AppCompatActivity(), GroupListener {
                     val key = groupSnap.key ?: continue
                     val name = groupSnap.child("name").getValue(String::class.java) ?: continue
 
-                    val tasks = mutableListOf<Task>()
-                    val tasksSnap = groupSnap.child("tasks")
-                    for (taskSnap in tasksSnap.children) {
-                        val taskName = taskSnap.child("name").getValue(String::class.java) ?: continue
-                        val completed = taskSnap.child("completed").getValue(Boolean::class.java) ?: false
-                        tasks.add(Task(taskName, completed))
-                    }
-
                     newKeys.add(key)
-                    newGroups.add(Group(name, tasks))
+                    newGroups.add(Group(name, mutableListOf()))
                 }
 
                 groupKeys.clear()
@@ -95,9 +87,7 @@ class GroupsActivity : AppCompatActivity(), GroupListener {
                 groupAdapter.notifyDataSetChanged()
             }
 
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+            override fun onCancelled(error: DatabaseError) {}
         }
 
         groupsRef.addValueEventListener(groupsListener as ValueEventListener)
@@ -125,7 +115,6 @@ class GroupsActivity : AppCompatActivity(), GroupListener {
         }
 
         builder.setNegativeButton("Cancel") { _, _ -> }
-
         builder.show()
     }
 
@@ -139,12 +128,10 @@ class GroupsActivity : AppCompatActivity(), GroupListener {
         builder.setPositiveButton("Delete") { _, _ ->
             val uid = auth.currentUser?.uid ?: return@setPositiveButton
             val groupId = groupKeys[index]
-
             deleteGroupAndItsTasks(uid, groupId)
         }
 
         builder.setNegativeButton("Cancel") { _, _ -> }
-
         builder.show()
     }
 
@@ -175,8 +162,7 @@ class GroupsActivity : AppCompatActivity(), GroupListener {
                     root.updateChildren(updates)
                 }
 
-                override fun onCancelled(error: DatabaseError) {
-                }
+                override fun onCancelled(error: DatabaseError) {}
             })
     }
 
