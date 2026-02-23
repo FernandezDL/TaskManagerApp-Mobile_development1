@@ -114,13 +114,9 @@ class TasksActivity : AppCompatActivity(), TasksListener {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // opcional: mostrar error
             }
         }
 
-        // Importante: como tu estructura no está indexada por groupId “nativamente” (no está anidado),
-        // aquí escuchamos tasks/{uid} y filtramos por groupId.
-        // (Luego podemos optimizar con una query + index si quieres.)
         tasksRef.addValueEventListener(tasksListener as ValueEventListener)
     }
 

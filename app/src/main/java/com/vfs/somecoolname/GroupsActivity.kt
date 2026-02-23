@@ -140,7 +140,7 @@ class GroupsActivity : AppCompatActivity(), GroupListener {
             val uid = auth.currentUser?.uid ?: return@setPositiveButton
             val groupId = groupKeys[index]
 
-            db.child("groups").child(uid).child(groupId).removeValue()
+            deleteGroupAndItsTasks(uid, groupId)
         }
 
         builder.setNegativeButton("Cancel") { _, _ -> }
@@ -154,5 +154,29 @@ class GroupsActivity : AppCompatActivity(), GroupListener {
         intent.putExtra("groupId", groupKeys[index])
         intent.putExtra("groupName", AppData.groups[index].name)
         startActivity(intent)
+    }
+
+    private fun deleteGroupAndItsTasks(uid: String, groupId: String) {
+        val root = db
+        val tasksRef = root.child("tasks").child(uid)
+
+        tasksRef.orderByChild("groupId").equalTo(groupId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val updates = mutableMapOf<String, Any?>()
+
+                    updates["groups/$uid/$groupId"] = null
+
+                    for (taskSnap in snapshot.children) {
+                        val taskId = taskSnap.key ?: continue
+                        updates["tasks/$uid/$taskId"] = null
+                    }
+
+                    root.updateChildren(updates)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
     }
 }

@@ -12,10 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
         <activity
-            android:name=".LoginRegister"
-            android:exported="false" />
-        <activity
-            android:name=".AddTaskActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".TasksActivity"

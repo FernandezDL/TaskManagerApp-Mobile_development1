@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
             val pass = etPassword.text.toString()
 
             if (email.isEmpty() || pass.isEmpty()) {
-                toast("Completa email y password")
+                toast("Complete email y password")
                 return@setOnClickListener
             }
 
@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
                     goToGroups()
                 }
                 .addOnFailureListener { e ->
-                    toast("Login falló: ${e.message}")
+                    toast("Login failed: ${e.message}")
                 }
         }
 
@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
             val pass = etPassword.text.toString()
 
             if (name.isEmpty() || email.isEmpty() || pass.length < 6) {
-                toast("Nombre, email y password (mín 6 chars)")
+                toast("name, email y password (min 6 chars)")
                 return@setOnClickListener
             }
 
@@ -62,20 +62,18 @@ class LoginActivity : AppCompatActivity() {
                     val uid = result.user?.uid ?: return@addOnSuccessListener
                     val profile = UserProfile(name = name, email = email)
 
-                    // Guardar perfil en Realtime DB
                     db.child("users").child(uid).setValue(profile)
                         .addOnSuccessListener { goToGroups() }
-                        .addOnFailureListener { e -> toast("No se guardó user: ${e.message}") }
+                        .addOnFailureListener { e -> toast("User could not be saved: ${e.message}") }
                 }
                 .addOnFailureListener { e ->
-                    toast("Registro falló: ${e.message}")
+                    toast("Register failed: ${e.message}")
                 }
         }
     }
 
     override fun onStart() {
         super.onStart()
-        // Si ya está logueada, salta login
         if (FirebaseAuth.getInstance().currentUser != null) {
             goToGroups()
         }
